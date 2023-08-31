@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=mystore
+      - POSTGRES_USER=brahian
+      - POSTGRES_PASSWORD=ADMIN123
+    ports:
+      - 5432:5432
+    volumes:
+      - './postgres_data:/var/lib/postgresql/data'
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - 5050:80
+  mysql:
+    image: mysql:5
+    environment:
+      - MYSQL_DATABASE=mystore
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=ADMIN123
+      - MYSQL_PORT=3306
+    ports:
+      - 3306:3306
+    volumes:
+      - './mysql_data:/var/lib/mysql'
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=ADMIN123
+      - PMA_HOST=mysql
+    ports:
+      - 8080:80
