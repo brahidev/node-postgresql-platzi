@@ -3,7 +3,6 @@ version: '3.8'
 services:
   postgres:
     image: postgres
-    restart: always
     environment:
       - POSTGRES_DB=mystore
       - POSTGRES_USER=brahian
@@ -14,7 +13,6 @@ services:
       - './postgres_data:/var/lib/postgresql/data'
   pgadmin:
     image: dpage/pgadmin4
-    restart: always
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@email.com
       - PGADMIN_DEFAULT_PASSWORD=root
